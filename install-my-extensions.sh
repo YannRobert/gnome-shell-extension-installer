@@ -1,38 +1,43 @@
 #!/bin/sh
 
+set -e
+
 GNOME_VERSION=$(gnome-shell --version | sed -e 's/GNOME Shell //g')
+echo "Gnome Shell version is ${GNOME_VERSION}"
+
+EXTENSIONS_LIST=""
 
 # Applications Menu
-./gnome-shell-extension-installer 6 $GNOME_VERSION
+EXTENSIONS_LIST="${EXTENSIONS_LIST} 6"
 
 # Places Status Indicator
-./gnome-shell-extension-installer 8 $GNOME_VERSION
+EXTENSIONS_LIST="${EXTENSIONS_LIST} 8"
 
 # Alternate Tab
-./gnome-shell-extension-installer 15 $GNOME_VERSION
+EXTENSIONS_LIST="${EXTENSIONS_LIST} 15"
 
 # Media Player Indicator
-./gnome-shell-extension-installer 55 $GNOME_VERSION
+EXTENSIONS_LIST="${EXTENSIONS_LIST} 55"
 
 # Remove Accesibility
-./gnome-shell-extension-installer 112 $GNOME_VERSION
+EXTENSIONS_LIST="${EXTENSIONS_LIST} 112"
 
 # System Monitor
-./gnome-shell-extension-installer 120 $GNOME_VERSION
+EXTENSIONS_LIST="${EXTENSIONS_LIST} 120"
 
 # Top Icons
-./gnome-shell-extension-installer 495 $GNOME_VERSION
+EXTENSIONS_LIST="${EXTENSIONS_LIST} 495"
 
 # Caffeine
-./gnome-shell-extension-installer 517 $GNOME_VERSION
+EXTENSIONS_LIST="${EXTENSIONS_LIST} 517"
 
 # Window List
-./gnome-shell-extension-installer 602 $GNOME_VERSION
+EXTENSIONS_LIST="${EXTENSIONS_LIST} 602"
 
 # Weather
-./gnome-shell-extension-installer 613 $GNOME_VERSION
+EXTENSIONS_LIST="${EXTENSIONS_LIST} 613"
 
-# Reload Gnome Shell
-gnome-shell --replace &
+./gnome-shell-extension-installer --restart-shell ${EXTENSIONS_LIST}
 
+echo "Successful"
 
